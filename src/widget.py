@@ -28,4 +28,3 @@ def get_date(data_time: str) -> str:
     dt_naive = datetime.fromisoformat(data_time).strftime("%d-%m-%Y")
 
     return dt_naive
-
