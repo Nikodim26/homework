@@ -27,4 +27,7 @@ def get_date(data_time: str) -> str:
 
     dt_naive = datetime.fromisoformat(data_time).strftime("%d-%m-%Y")
 
-    return dt_naive
+    return dt_naive.replace('-','.')
+
+
+print(get_date("2024-03-11T02:26:18.671407"))
