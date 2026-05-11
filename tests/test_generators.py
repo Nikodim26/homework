@@ -1,7 +1,7 @@
 from src.generators import transaction_descriptions, card_number_generator, filter_by_currency
 
 
-def test_filter_by_currency(fixture_for_generators:list[dict]) -> None:
+def test_filter_by_currency(fixture_for_generators: list[dict]) -> None:
     descriptions = filter_by_currency(fixture_for_generators, "USD")
     assert next(descriptions) == {
         'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572',
