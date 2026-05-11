@@ -25,3 +25,4 @@ def card_number_generator(start_of_range: int, end_of_range: int) -> Generator[s
             card_number = '0' + card_number
 
         yield card_number[:4] + " " + card_number[4:8] + " " + card_number[8:12] + " " + card_number[-4:]
+
