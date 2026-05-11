@@ -20,10 +20,8 @@ def card_number_generator(start_of_range: int, end_of_range: int) -> Generator[s
     Может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999"""
 
     for i in range(start_of_range, end_of_range + 1):
-        card_number = ''
+        card_number = str(i)
         for j in range(17 - len(str(end_of_range))):
-            card_number += '0'
-
-        card_number += str(i)
+            card_number = '0' + card_number
 
         yield card_number[:4] + " " + card_number[4:8] + " " + card_number[8:12] + " " + card_number[-4:]
