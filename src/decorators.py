@@ -1,3 +1,4 @@
+import os
 from time import time
 
 
@@ -6,8 +7,9 @@ def log(filename):
         def wrapper(*args, **kwargs):
 
             def print_(log_str):
+                path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
                 if filename:
-                    with open(filename, 'a', encoding='UTF-8') as file:
+                    with open(path, 'a', encoding='UTF-8') as file:
                         file.write(log_str)
                 else:
                     print(log_str)
@@ -29,10 +31,10 @@ def log(filename):
     return log_in
 
 
-# @log(filename="mylog.txt")
-@log(filename="")
+@log(filename="mylog.txt")
+# @log(filename="")
 def my_function(x, y, z):
-    return x + y + z/0
+    return x + y + z
 
 
 if __name__ == '__main__':
