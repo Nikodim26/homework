@@ -5,7 +5,12 @@ def log(filename):
     def log_in(func):
         def wrapper(*args, **kwargs):
 
-
+            def print_(log_str):
+                if filename:
+                    with open(filename, 'a', encoding='UTF-8') as file:
+                        file.write(log_str)
+                else:
+                    print(log_str)
 
             try:
                 time_start = time()
@@ -13,33 +18,21 @@ def log(filename):
                 time_stop = time()
                 log_string = (f'{func.__name__} выполнила работу за {time_stop - time_start:.8f}'
                               f' сек. с результатом {result}\n')
-                if filename:
-                    with open(filename, 'a', encoding='UTF-8') as file:
-                        file.write(log_string)
-                else:
-                    print(log_string)
+                print_(log_string)
 
             except Exception as e:
-                log_string=f'{func.__name__} завершена с ошибкой "{e}"\n'
-
-
-                if filename:
-                    with open(filename, 'a', encoding='UTF-8') as file:
-                        file.write(log_string)
-                else:
-                    print(log_string)
-
+                log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой "{e}"\n'
+                print_(log_string)
 
         return wrapper
 
     return log_in
 
 
-@log(filename="mylog.txt")
-# @log(filename="")
+# @log(filename="mylog.txt")
+@log(filename="")
 def my_function(x, y, z):
-    return x + y + z
-
+    return x + y + z/0
 
 
 if __name__ == '__main__':
