@@ -34,7 +34,7 @@ def log(filename):
 @log(filename="mylog.txt")
 # @log(filename="")
 def my_function(x, y, z):
-    return x + y + z
+    return x + y + z/0
 
 
 if __name__ == '__main__':
