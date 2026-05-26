@@ -1,12 +1,18 @@
 import os
+from functools import wraps
 from time import time
+from typing import Callable, Any
 
 
-def log(filename):
-    def log_in(func):
-        def wrapper(*args, **kwargs):
+def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], None]]:
+    """Дополняет работу функции логированием в консоль или файл"""
 
-            def print_(log_str):
+    def wrapper(func):
+        @wraps(func)
+        def log_in(*args, **kwargs):
+
+            def print_(log_str: str) -> None:
+                """Определяет куда выводить лог"""
                 path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
                 if filename:
                     with open(path, 'a', encoding='UTF-8') as file:
@@ -26,6 +32,6 @@ def log(filename):
                 log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}'
                 print_(log_string)
 
-        return wrapper
+        return log_in
 
-    return log_in
+    return wrapper
