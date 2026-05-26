@@ -10,7 +10,7 @@ def log(filename):
                 path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
                 if filename:
                     with open(path, 'a', encoding='UTF-8') as file:
-                        file.write(log_str+'\n')
+                        file.write(log_str + '\n')
                 else:
                     print(log_str)
 
@@ -23,8 +23,7 @@ def log(filename):
                 print_(log_string)
 
             except Exception as e:
-                # log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}\n'
-                log_string='division by zero'
+                log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}'
                 print_(log_string)
 
         return wrapper
@@ -32,11 +31,11 @@ def log(filename):
     return log_in
 
 
-# @log(filename="mylog.txt")
-@log(filename="")
+@log(filename="mylog.txt")
+# @log(filename="")
 def my_function(x, y, z):
-    return x + y + z/0
+    return x + y + z
 
 
 if __name__ == '__main__':
-    my_function(1, 2, 3)
+    my_function(1, 2, '3')
