@@ -29,13 +29,3 @@ def log(filename):
         return wrapper
 
     return log_in
-
-
-@log(filename="mylog.txt")
-# @log(filename="")
-def my_function(x, y, z):
-    return x + y + z
-
-
-if __name__ == '__main__':
-    my_function(1, 2, '3')

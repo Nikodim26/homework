@@ -1,6 +1,7 @@
 import os
+from collections import deque
 
-from decorators import log
+from src.decorators import log
 
 
 @log(filename="")
@@ -30,5 +31,14 @@ def test_log_ok_file(filename="mylog.txt"):
     my_function2(1, 2, 5)
     path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
     with open(path, 'r', encoding='UTF-8') as file:
-        a = file.read()
-        assert a == []
+        last_line = deque(file, maxlen=1).pop()
+        assert last_line[:32] == "my_function2 выполнила работу за"
+        assert last_line[-21:] == "сек. с результатом 8\n"
+
+
+def test_log_err_file(filename="mylog.txt"):
+    my_function2(1, 2, '5')
+    path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
+    with open(path, 'r', encoding='UTF-8') as file:
+        last_line = deque(file, maxlen=1).pop()
+        assert last_line[:63] == "my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой:"
