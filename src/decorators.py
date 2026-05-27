@@ -27,7 +27,7 @@ def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, A
                 log_string = (f'{func.__name__} выполнила работу за {time_stop - time_start:.8f}'
                               f' сек. с результатом {result}')
                 print_(log_string)
-
+                return result
             except Exception as e:
                 log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}'
                 print_(log_string)
