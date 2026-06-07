@@ -24,6 +24,7 @@ def currency_conversion(transaction: dict) -> Any:
 
             exchange_rate = response.json()["Valute"].get(transaction_code)["Value"]
             amount = float(transaction["operationAmount"]["amount"])
+
             return round(exchange_rate * amount, 2)
     except Exception:
         print('Что-то пошло не так с транзакцией')
