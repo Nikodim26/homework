@@ -1,11 +1,9 @@
 import os
 from functools import wraps
 from time import time
-from typing import Any
-from typing import Callable
 
 
-def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], None]]:
+def log(filename: str):
     """Дополняет работу функции логированием в консоль или файл"""
 
     def wrapper(func):

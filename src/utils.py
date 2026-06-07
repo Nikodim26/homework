@@ -3,7 +3,7 @@ import os
 from typing import Any
 
 
-def about_financial_transactions(path_json: str) -> list[dict[Any, Any]]:
+def about_financial_transactions(path_json: str) -> Any:
     """Принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях"""
 
     path = os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + path_json
