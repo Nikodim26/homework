@@ -1,13 +1,14 @@
 import json
 import os
+from typing import Any
 
 
-def about_financial_transactions(path_json: str) -> list[dict]:
+def about_financial_transactions(path_json: str) -> list[dict[Any, Any]]:
     """Принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях"""
 
-    path = os.path.dirname(os.path.dirname(__file__)) + '\\data\\' + path_json
+    path = os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + path_json
     try:
-        with open(path, 'r', encoding='UTF-8') as file:
+        with open(path, "r", encoding="UTF-8") as file:
             transactions = json.load(file)
             return transactions
     except Exception as e:
