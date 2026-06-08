@@ -1,10 +1,9 @@
 import os
 from functools import wraps
 from time import time
-from typing import Callable, Any
 
 
-def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], None]]:
+def log(filename: str):
     """Дополняет работу функции логированием в консоль или файл"""
 
     def wrapper(func):
@@ -13,10 +12,10 @@ def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, A
 
             def print_(log_str: str) -> None:
                 """Определяет куда выводить лог"""
-                path = os.path.dirname(os.path.dirname(__file__)) + '\\' + filename
+                path = os.path.dirname(os.path.dirname(__file__)) + "\\" + filename
                 if filename:
-                    with open(path, 'a', encoding='UTF-8') as file:
-                        file.write(log_str + '\n')
+                    with open(path, "a", encoding="UTF-8") as file:
+                        file.write(log_str + "\n")
                 else:
                     print(log_str)
 
@@ -24,12 +23,13 @@ def log(filename: str) -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, A
                 time_start = time()
                 result = func(*args, **kwargs)
                 time_stop = time()
-                log_string = (f'{func.__name__} выполнила работу за {time_stop - time_start:.8f}'
-                              f' сек. с результатом {result}')
+                log_string = (
+                    f"{func.__name__} выполнила работу за {time_stop - time_start:.8f}" f" сек. с результатом {result}"
+                )
                 print_(log_string)
                 return result
             except Exception as e:
-                log_string = f'{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}'
+                log_string = f"{func.__name__} с параметрами {args}, {kwargs} завершена с ошибкой: {e}"
                 print_(log_string)
 
         return log_in
