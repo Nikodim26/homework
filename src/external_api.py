@@ -8,7 +8,7 @@ def currency_conversion(transaction: dict) -> Any:
     try:
         transaction_code = transaction["operationAmount"]["currency"]["code"]
         if transaction_code == "RUB":
-            return transaction["operationAmount"]["amount"]
+            return float(transaction["operationAmount"]["amount"])
 
         if transaction_code == "USD" or transaction_code == "EUR":
             """
