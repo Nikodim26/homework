@@ -27,4 +27,4 @@ def currency_conversion(transaction: dict) -> Any:
 
             return round(exchange_rate * amount, 2)
     except Exception:
-        print('Что-то пошло не так с транзакцией')
+        print("Что-то пошло не так с транзакцией")
