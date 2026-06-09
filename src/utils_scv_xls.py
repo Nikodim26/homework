@@ -11,6 +11,7 @@ def about_financial_transactions_csv(file_data: str) -> Any:
     path = os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + file_data
     try:
         with open(path, "r", encoding="UTF-8") as file:
+            print(next(csv.DictReader(file, delimiter=";")))
             return [row_dict for row_dict in csv.DictReader(file, delimiter=";")]
     except Exception as e:
         print(e)
@@ -29,3 +30,6 @@ def about_financial_transactions_xlsx(file_data: str) -> Any:
     except Exception as e:
         print(e)
         return []
+
+
+about_financial_transactions_csv("transactions.csv")

@@ -98,4 +98,3 @@ def fixture_for_test_currency_conversion_val() -> dict:
         "date": "2019-07-03T18:35:29.512364",
         "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
     }
-

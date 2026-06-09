@@ -5,7 +5,7 @@ from src.external_api import currency_conversion
 
 def test_currency_conversion(fixture_for_test_currency_conversion) -> None:
     assert currency_conversion({}) is None
-    assert currency_conversion(fixture_for_test_currency_conversion) == "31957.58"
+    assert currency_conversion(fixture_for_test_currency_conversion) == 31957.58
 
 
 @patch("requests.get")
