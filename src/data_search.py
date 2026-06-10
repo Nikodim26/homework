@@ -1,3 +1,4 @@
-def data_search(data_search: str) -> list[dict]:
+def data_search(data: str) -> list[dict]:
+    """Ищет в данных нужные, обусловленные определенными критериями"""
 
     return []
