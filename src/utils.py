@@ -38,12 +38,14 @@ def about_financial_transactions_csv(file_data: str) -> Any:
     """Принимает на вход путь до CSV-файла и возвращает список словарей с данными о финансовых транзакциях"""
 
     path = os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + file_data
+    logger.info(f"получен доступ к данным {file_data}")
     try:
         with open(path, "r", encoding="UTF-8") as file:
             print(next(csv.DictReader(file, delimiter=";")))
+            logger.info(f"получена распечатка данных из {file_data}")
             return [row_dict for row_dict in csv.DictReader(file, delimiter=";")]
     except Exception as e:
-        print(e)
+        logger.error(f"получена ошибка: {e}")
         return []
 
 
@@ -51,14 +53,19 @@ def about_financial_transactions_xlsx(file_data: str) -> Any:
     """Принимает на вход путь до XLSX-файла и возвращает список словарей с данными о финансовых транзакциях"""
 
     path = os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + file_data
+    logger.info(f"получен доступ к данным {file_data}")
     try:
         reader_xlsx = pd.read_excel(path)
         transactions = reader_xlsx.to_dict("records")
+        logger.info(f"получена распечатка данных из {file_data}")
         return transactions
 
     except Exception as e:
-        print(e)
+        logger.error(f"получена ошибка: {e}")
         return []
 
 
-about_financial_transactions_csv("transactions.csv")
+if __name__ == "__main__":
+    # print(about_financial_transactions_json('operations.json'))
+    # print(about_financial_transactions_csv('transactions.csv'))
+    print(about_financial_transactions_xlsx("transactions_excel.xlsx"))
