@@ -41,7 +41,6 @@ def about_financial_transactions_csv(file_data: str) -> Any:
     logger.info(f"получен доступ к данным {file_data}")
     try:
         with open(path, "r", encoding="UTF-8") as file:
-            print(next(csv.DictReader(file, delimiter=";")))
             logger.info(f"получена распечатка данных из {file_data}")
             return [row_dict for row_dict in csv.DictReader(file, delimiter=";")]
     except Exception as e:
