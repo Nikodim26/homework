@@ -11,12 +11,15 @@ def main() -> dict:
     2. Получить информацию о транзакциях из CSV-файла
     3. Получить информацию о транзакциях из XLSX-файла)
     """)
+    while True:
+        number = input('Введите номер пункта: ')
+        if not number.isdigit():
+            continue
+        number = int(number)
+        if number in [1, 2, 3]:
+            break
 
-    file_types = ['JSON', 'CSV', 'XLSX']
-
-    # number = int(input('Введите номер пункта: '))
-    number = 1
-    print(f'Для обработки выбран "{file_types[number - 1]}"-файл.')
+    print(f'Для обработки выбран "{['JSON', 'CSV', 'XLSX'][number - 1]}"-файл.')
 
     if number == 1:
         transactions = about_financial_transactions_json('operations.json')
@@ -25,21 +28,23 @@ def main() -> dict:
     if number == 3:
         transactions = about_financial_transactions_xlsx('transactions_excel.xlsx')
 
-    status = ['EXECUTED', 'CANCELED', 'PENDING']
-    # while True:
-    #     status_val = input("""
-    #     Введите статус, по которому необходимо выполнить фильтрацию.
-    #     Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING
-    #     """)
-    #     if status_val not in status:
-    #         print(f'Статус операции {status_val} недоступен')
-    #     else:
-    #         break
-    status_val = 'CANCELED'
+    while True:
+        status_val = input("""
+    Введите статус, по которому необходимо выполнить фильтрацию.
+    Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING
+    (по умолчанию 'EXECUTED'): """)
+
+        if not status_val:
+            status_val = 'EXECUTED'
+            break
+        if status_val not in ['EXECUTED', 'CANCELED', 'PENDING']:
+            print(f'Статус операции {status_val} недоступен')
+        else:
+            break
+
     print(f'Операции отфильтрованы по статусу "{status_val}"')
     filtered_transactions = filter_by_state(transactions, status_val)
     print(filtered_transactions)
-
 
 
 main()
