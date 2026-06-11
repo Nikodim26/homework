@@ -8,7 +8,8 @@ def process_bank_search(data: list[dict], search_string: str) -> list[dict]:
 
 
 def process_bank_operations(data: list[dict], categories: list) -> dict:
-    descriptions = set(dict_data.get('description') for dict_data in data if dict_data.get('description'))
+    """Собирает статистику об операциях - их количестве"""
+    descriptions = set(dict_data.get("description") for dict_data in data if dict_data.get("description"))
     result = {}
     for description in descriptions:
         if description in categories:
