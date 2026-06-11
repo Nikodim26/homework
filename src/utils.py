@@ -62,9 +62,3 @@ def about_financial_transactions_xlsx(file_data: str) -> Any:
     except Exception as e:
         logger.error(f"получена ошибка: {e}")
         return []
-
-
-if __name__ == "__main__":
-    # print(about_financial_transactions_json('operations.json'))
-    # print(about_financial_transactions_csv('transactions.csv'))
-    print(about_financial_transactions_xlsx("transactions_excel.xlsx"))

@@ -5,7 +5,7 @@ def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict
     """Функция возвращает новый список словарей, содержащий только те словари, у которых ключ
     'state' соответствует указанному значению."""
 
-    return list(d for d in list_dict if d["state"] == state)
+    return [d for d in list_dict if d.get("state") == state]
 
 
 def sort_by_date(list_dicts: list[dict], ascending: bool = True) -> list[dict]:
