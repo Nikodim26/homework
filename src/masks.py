@@ -17,6 +17,7 @@ def get_mask_card_number(number: str) -> str:
     """Принимает на вход номер карты в виде строки и возвращает маску номера по правилу
     "XXXX XX** **** XXXX" """
     logger.info(f"получен номер карты: {number}")
+
     number = number[:6] + "******" + number[-4:]
     number = number[:4] + " " + number[4:8] + " " + number[8:12] + " " + number[-4:]
     logger.info(f"выдана маска карты: ->>> {number}")
