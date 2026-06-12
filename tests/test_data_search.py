@@ -10,9 +10,9 @@ def test_process_bank_search(fixture_end_sort_by_date) -> None:
 
 
 def test_process_bank_operations(fixture_for_generators) -> None:
-    assert process_bank_operations(fixture_for_generators, "Перевод с карты на карту") == {
+    assert process_bank_operations(fixture_for_generators, ["Перевод с карты на карту"]) == {
         "Перевод с карты на карту": 1
     }
-    assert process_bank_operations(fixture_for_generators, "Перевод со счета на счет") == {
+    assert process_bank_operations(fixture_for_generators, ["Перевод со счета на счет"]) == {
         "Перевод со счета на счет": 2
     }

@@ -25,16 +25,16 @@ def main() -> None:
         number = input("Введите номер пункта: ")
         if not number.isdigit():
             continue
-        elif number in ['1', '2', '3']:
+        elif number in ["1", "2", "3"]:
             print(f'Для обработки выбран "{['JSON', 'CSV', 'XLSX'][int(number) - 1]}"-файл.')
             break
 
     match number:
-        case '1':
+        case "1":
             transactions = about_financial_transactions_json("operations.json")
-        case '2':
+        case "2":
             transactions = about_financial_transactions_csv("transactions.csv")
-        case '3':
+        case "3":
             transactions = about_financial_transactions_xlsx("transactions_excel.xlsx")
 
     while True:
@@ -57,21 +57,22 @@ def main() -> None:
         answer_to_question_sort = input("Отсортировать операции по дате (Да/Нет) /Да ? ").lower()
         if answer_to_question_sort in ["да", "нет"]:
             break
-        if answer_to_question_sort == '':
-            answer_to_question_sort = 'да'
+        if answer_to_question_sort == "":
+            answer_to_question_sort = "да"
             break
 
     while True:
         answer_to_question_sort_type = input(
-            "Отсортировать по возрастанию или по убыванию (возр/убыв) /убыв ? ").lower()
+            "Отсортировать по возрастанию или по убыванию (возр/убыв) /убыв ? "
+        ).lower()
         if answer_to_question_sort_type in ["возр", "убыв"]:
             break
         if answer_to_question_sort_type == "":
             answer_to_question_sort_type = "убыв"
             break
 
-    ascending = True if answer_to_question_sort_type == 'убыв' else False
-    if answer_to_question_sort == 'да':
+    ascending = True if answer_to_question_sort_type == "убыв" else False
+    if answer_to_question_sort == "да":
         transactions = sort_by_date(transactions, ascending)
 
     while True:
@@ -79,25 +80,25 @@ def main() -> None:
         if answer_to_question_sort_val in ["да", "нет"]:
             break
         if answer_to_question_sort_val == "":
-            answer_to_question_sort_val = 'да'
+            answer_to_question_sort_val = "да"
             break
 
-    if answer_to_question_sort_val == 'да':
+    if answer_to_question_sort_val == "да":
         transactions = process_bank_search(transactions, "RUB")
-
 
     while True:
         answer_to_question_sort_word = input(
-            'Отфильтровать список транзакций по определенному слову в описании Да/Нет ? /Да')
+            "Отфильтровать список транзакций по определенному слову в описании Да/Нет ? /Да"
+        )
         if answer_to_question_sort_word in ["да", "нет"]:
             break
         if answer_to_question_sort_word == "":
-            answer_to_question_sort_word = 'да'
+            answer_to_question_sort_word = "да"
             break
 
-    if answer_to_question_sort_word == 'да':
-        word_for_sort = input('Введите слово для сортировки ')
-        transactions = process_bank_search(transactions,word_for_sort)
+    if answer_to_question_sort_word == "да":
+        word_for_sort = input("Введите слово для сортировки ")
+        transactions = process_bank_search(transactions, word_for_sort)
 
     print("Распечатываю итоговый список транзакций...")
     print(f"Всего банковских операций в выборке: {len(transactions)}")

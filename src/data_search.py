@@ -20,5 +20,4 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
         category_matching_dictionary = process_bank_search(data, categori)
         for category_matching in category_matching_dictionary:
             types_of_categories.append(categori)
-
     return dict(Counter(types_of_categories))
