@@ -1,11 +1,15 @@
 import json
+import re
 
 
 def process_bank_search(data: list[dict], search_string: str) -> list[dict]:
     """Ищет в данных нужные, обусловленные определенными критериями"""
-
-    return [dict_data for dict_data in data if
-            search_string.lower() in json.dumps(dict_data, ensure_ascii=False).lower()]
+    res=[]
+    for i in data:
+        data_json = re.sub(r"[\"()\[\]{}]", "", json.dumps(i, ensure_ascii=False))
+        if search_string.lower() in data_json.lower():
+            res.append(i)
+    return res
 
 
 def process_bank_operations(data: list[dict], categories: list) -> dict:
