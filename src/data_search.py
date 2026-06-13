@@ -6,8 +6,8 @@ from collections import Counter
 def process_bank_search(list_data: list[dict], search_string: str) -> list[dict]:
     """Ищет в данных нужные, обусловленные определенными критериями"""
 
-    pattern = re.compile(rf'{search_string.lower()}')
-    return [data for data in list_data if pattern.search(json.dumps(data, ensure_ascii=False).lower())]
+    pattern = re.compile(rf"{search_string.lower()}")
+    return [data for data in list_data if pattern.search(json.dumps(data['description'], ensure_ascii=False).lower())]
 
 
 def process_bank_operations(data: list[dict], categories: list) -> dict:

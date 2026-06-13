@@ -85,3 +85,9 @@ my_function2 выполнила работу за 0.00000334 сек. с резу
 my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
 my_function2 выполнила работу за 0.00000167 сек. с результатом 8
 my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
+my_function2 выполнила работу за 0.00001621 сек. с результатом 8
+my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
+my_function2 выполнила работу за 0.00000238 сек. с результатом 8
+my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
+my_function2 выполнила работу за 0.00000143 сек. с результатом 8
+my_function2 с параметрами (1, 2, '5'), {} завершена с ошибкой: unsupported operand type(s) for +: 'int' and 'str'
