@@ -88,7 +88,7 @@ def main() -> None:
 
     while True:
         answer_to_question_sort_word = input(
-            "Отфильтровать список транзакций по определенному слову в описании Да/Нет ? /Да"
+            "Отфильтровать список транзакций по определенному слову в описании Да/Нет ? /Да "
         )
         if answer_to_question_sort_word in ["да", "нет"]:
             break
@@ -97,7 +97,7 @@ def main() -> None:
             break
 
     if answer_to_question_sort_word == "да":
-        word_for_sort = input("Введите слово для сортировки ")
+        word_for_sort = input("Введите слово для сортировки ").lower()
         transactions = process_bank_search(transactions, word_for_sort)
 
     print("Распечатываю итоговый список транзакций...")

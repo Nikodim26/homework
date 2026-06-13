@@ -3,14 +3,11 @@ import re
 from collections import Counter
 
 
-def process_bank_search(data: list[dict], search_string: str) -> list[dict]:
+def process_bank_search(list_data: list[dict], search_string: str) -> list[dict]:
     """Ищет в данных нужные, обусловленные определенными критериями"""
-    res = []
-    for i in data:
-        data_json = re.sub(r"[\"()\[\]{}]", "", json.dumps(i, ensure_ascii=False))
-        if search_string.lower() in data_json.lower():
-            res.append(i)
-    return res
+
+    pattern = re.compile(rf'{search_string.lower()}')
+    return [data for data in list_data if pattern.search(json.dumps(data, ensure_ascii=False).lower())]
 
 
 def process_bank_operations(data: list[dict], categories: list) -> dict:
@@ -18,6 +15,6 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
     types_of_categories = []
     for categori in categories:
         category_matching_dictionary = process_bank_search(data, categori)
-        for category_matching in category_matching_dictionary:
-            types_of_categories.append(categori)
+        types_of_categories.extend([categori] * len(category_matching_dictionary))
+
     return dict(Counter(types_of_categories))
